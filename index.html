@@ -131,9 +131,25 @@
   </div>
 
   <script>
-    const soalJawaban = [/* ... isi 15 soal sama seperti sebelumnya ... */];
+    const soalJawaban = [
+      {soal: "1. Apa kepanjangan dari PPLG?", pilihan: ["Pemrograman dan Perangkat Lunak Gratis", "Pengembangan Perangkat Lunak dan Gim", "Pengelolaan Perangkat Lunak Global", "Pembuatan Program dan Logika Global"], benar: "Pengembangan Perangkat Lunak dan Gim"},
+      {soal: "2. Tujuan utama dari PPLG adalah...?", pilihan: ["Menciptakan hardware berkualitas", "Mengembangkan software dan game", "Membuat desain grafis 3D", "Menyusun laporan keuangan digital"], benar: "Mengembangkan software dan game"},
+      {soal: "3. Berikut ini yang merupakan elemen dalam PPLG adalah, kecuali:", pilihan: ["Pemrograman", "Jaringan", "Perangkat Lunak", "Biologi Komputasi"], benar: "Biologi Komputasi"},
+      {soal: "4. Dalam proses bisnis PPLG, tahap awal yang dilakukan adalah:", pilihan: ["Testing", "Deployment", "Analisis kebutuhan", "Maintenance"], benar: "Analisis kebutuhan"},
+      {soal: "5. Apa fungsi dari tahap testing dalam proses pengembangan perangkat lunak?", pilihan: ["Menambahkan fitur baru", "Menghapus dokumentasi", "Menemukan dan memperbaiki bug", "Membuat tampilan UI"], benar: "Menemukan dan memperbaiki bug"},
+      {soal: "6. Perangkat lunak yang digunakan untuk membuat game termasuk dalam produk...?", pilihan: ["Hardware", "Jaringan", "Software", "Data Center"], benar: "Software"},
+      {soal: "7. Berikut ini merupakan contoh bahasa pemrograman, kecuali:", pilihan: ["Python", "HTML", "CSS", "Photoshop"], benar: "Photoshop"},
+      {soal: "8. Tahapan deployment dalam proses PPLG berarti...?", pilihan: ["Pengujian akhir aplikasi", "Pembuatan database", "Peluncuran aplikasi ke pengguna", "Desain interface pengguna"], benar: "Peluncuran aplikasi ke pengguna"},
+      {soal: "9. Apa yang dimaksud dengan maintenance dalam PPLG?", pilihan: ["Menghapus aplikasi", "Merawat dan memperbarui aplikasi setelah rilis", "Membuat ulang aplikasi dari nol", "Mempromosikan aplikasi ke media sosial"], benar: "Merawat dan memperbarui aplikasi setelah rilis"},
+      {soal: "10. Siapa saja yang terlibat dalam tim pengembangan perangkat lunak?", pilihan: ["Guru dan murid", "Programmer, UI/UX designer, tester", "Dokter, perawat, apoteker", "Sopir, mekanik, teknisi"], benar: "Programmer, UI/UX designer, tester"},
+      {soal: "11. Yang bukan termasuk tahapan dalam proses pengembangan perangkat lunak adalah:", pilihan: ["Perencanaan", "Pengumpulan data", "Penghapusan sistem", "Implementasi"], benar: "Penghapusan sistem"},
+      {soal: "12. Elemen penting dari PPLG yang berkaitan dengan tampilan aplikasi adalah:", pilihan: ["Database", "Algoritma", "UI/UX", "Sistem Operasi"], benar: "UI/UX"},
+      {soal: "13. Manakah pernyataan yang benar tentang pemrograman?", pilihan: ["Hanya bisa dilakukan di komputer super", "Proses membuat sistem operasi saja", "Menyusun instruksi untuk menyelesaikan masalah secara otomatis", "Proses mengganti hardware"], benar: "Menyusun instruksi untuk menyelesaikan masalah secara otomatis"},
+      {soal: "14. Apa itu debugging dalam proses pemrograman?", pilihan: ["Membuat tampilan game", "Menghubungkan ke internet", "Mencari dan memperbaiki kesalahan kode", "Membuat ikon aplikasi"], benar: "Mencari dan memperbaiki kesalahan kode"},
+      {soal: "15. Dalam PPLG, produk yang dihasilkan bisa berupa:", pilihan: ["Jaringan komputer", "Aplikasi mobile dan game", "Perangkat keras", "Kabel data"], benar: "Aplikasi mobile dan game"}
+    ];
 
-    const form = document.getElementById("kuisForm");
+        const form = document.getElementById("kuisForm");
 
     // Generate soal
     soalJawaban.forEach((item, index) => {
