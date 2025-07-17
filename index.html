@@ -1,204 +1,216 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kuis PPLG - SMKS Al Mamun Cibugel</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Latihan Soal PPLG</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f2f2f2;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f7f9;
       color: #333;
     }
-
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #1e3a8a;
+      color: white;
+    }
+    header img {
+      width: 80px;
+      margin-bottom: 10px;
+    }
     .container {
       max-width: 800px;
-      margin: auto;
+      margin: 20px auto;
       background: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
-    .logo {
-      text-align: center;
+    h2 {
+      color: #1e3a8a;
     }
-
-    .logo img {
-      width: 100px;
-      margin-bottom: 10px;
-    }
-
-    h1, h2 {
-      text-align: center;
-      color: #2c3e50;
-    }
-
     .question {
       margin-bottom: 20px;
     }
-
-    .question p {
-      margin: 0 0 10px;
-    }
-
-    .question label {
+    .options label {
       display: block;
+      padding: 10px;
+      border: 1px solid #ccc;
       margin-bottom: 5px;
-      cursor: pointer;
-    }
-
-    #submit, #retry {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 20px auto;
-      display: block;
-      background-color: #3498db;
-      color: white;
-      border: none;
       border-radius: 5px;
       cursor: pointer;
+      background-color: #f9f9f9;
+      transition: background 0.2s;
     }
-
-    #submit:hover, #retry:hover {
-      background-color: #2980b9;
+    .options label:hover {
+      background-color: #e0e7ff;
     }
-
-    #result {
-      font-size: 18px;
-      text-align: center;
-      font-weight: bold;
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
       margin-top: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #1e3a8a;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3749a2;
+    }
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #d1fae5;
+      border-left: 5px solid #10b981;
+      border-radius: 5px;
+      display: none;
+    }
+    @media screen and (max-width: 600px) {
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">
-      <img src="LOGO SMK.png" alt="Logo SMK" />
-      <h2>SMKS Al Mamun Cibugel</h2>
-      <p>Oleh: <strong>Edwar Anas, S.Kom</strong></p>
-    </div>
-    <h1>Kuis Konsep Dasar PPLG</h1>
+  <header>
+    <img src="https://i.imgur.com/F3aG8r1.png" alt="Logo Sekolah" />
+    <h1>Latihan Soal PPLG</h1>
+    <p>oleh Edwar Anas, S.Kom</p>
+  </header>
 
+  <div class="container" id="quiz-container">
     <form id="quizForm">
-      <!-- SOAL 1 - 15 -->
+      <!-- Soal-soalnya nanti disisipkan lewat JavaScript -->
     </form>
-
-    <button id="submit">Lihat Hasil</button>
-    <div id="result"></div>
-    <button id="retry" style="display:none;" onclick="location.reload()">Coba Lagi</button>
+    <div class="result" id="resultBox"></div>
+    <button onclick="submitQuiz()">Selesai</button>
+    <button onclick="location.reload()" style="display: none;" id="retryBtn">Coba Lagi</button>
   </div>
 
   <script>
-    const soal = [
+    const questions = [
       {
-        t: "Apa kepanjangan dari PPLG?",
-        o: ["Pengembangan Perangkat Lunak dan Gim", "Pengolahan Proyek Layanan Global", "Pemrograman Proses Layanan Game", "Pengetahuan Praktis Layanan Guru"],
-        a: 0
+        question: "1. Apa kepanjangan dari PPLG?",
+        options: ["Pengembangan Perangkat Lunak dan Gim", "Pendidikan Pengelolaan Layanan Global", "Program Pembelajaran Lintas Generasi", "Pelatihan Produk Lokal dan Global"],
+        answer: 0
       },
       {
-        t: "Berikut ini yang termasuk dalam tujuan PPLG adalah...",
-        o: ["Mempelajari seni tari daerah", "Membuat kerajinan tangan", "Membuat, mengembangkan, dan menguji aplikasi", "Menanam sayuran hidroponik"],
-        a: 2
+        question: "2. Apa tujuan utama dari PPLG?",
+        options: ["Mengelola sistem pendidikan", "Membuat perangkat lunak dan gim", "Mengembangkan kurikulum", "Memahami jaringan komputer"],
+        answer: 1
       },
       {
-        t: "Bahasa pemrograman yang umum dipelajari dalam PPLG adalah...",
-        o: ["Python, Java, HTML", "Bahasa Indonesia, Inggris, Jepang", "Aksara Jawa, Latin, Arab", "Photoshop, CorelDraw, Canva"],
-        a: 0
+        question: "3. Elemen utama dalam PPLG kecuali?",
+        options: ["Pemrograman", "Desain UI/UX", "Kewirausahaan", "Peternakan"],
+        answer: 3
       },
       {
-        t: "Apa yang dimaksud dengan debugging?",
-        o: ["Menjalankan aplikasi", "Mencari dan memperbaiki kesalahan dalam kode", "Menambahkan gambar ke aplikasi", "Menghapus aplikasi"],
-        a: 1
+        question: "4. Apa itu flowchart?",
+        options: ["Diagram alur logika", "Kode program", "Bahasa pemrograman", "Data base"],
+        answer: 0
       },
       {
-        t: "Elemen utama dalam pengembangan perangkat lunak adalah...",
-        o: ["Hardware, Proyektor, Whiteboard", "Analisis, Desain, Kode, Uji", "Papan tulis, Laptop, Speaker", "Kabel, Mouse, Printer"],
-        a: 1
+        question: "5. Proses bisnis adalah?",
+        options: ["Langkah-langkah menyusun soal", "Alur kerja dalam organisasi", "Jenis bahasa pemrograman", "Desain karakter gim"],
+        answer: 1
       },
       {
-        t: "Proses bisnis dalam PPLG bertujuan untuk...",
-        o: ["Membeli dan menjual saham", "Mengembangkan solusi perangkat lunak yang efisien", "Membuat peraturan sekolah", "Membentuk organisasi siswa"],
-        a: 1
+        question: "6. Bahasa pemrograman populer di PPLG?",
+        options: ["Python", "Latin", "Bahasa Indonesia", "Sanskerta"],
+        answer: 0
       },
       {
-        t: "UI adalah singkatan dari...",
-        o: ["Unique Interface", "User Interface", "Universal Internet", "Ultimate Input"],
-        a: 1
+        question: "7. Database digunakan untuk?",
+        options: ["Mengetik soal", "Menyimpan data", "Menggambar desain", "Membuat animasi"],
+        answer: 1
       },
       {
-        t: "Perangkat lunak adalah...",
-        o: ["Perangkat keras komputer", "Instruksi atau program yang dijalankan komputer", "Komponen fisik komputer", "Jaringan internet"],
-        a: 1
+        question: "8. Yang termasuk proses bisnis PPLG?",
+        options: ["Menanam padi", "Memasak nasi", "Pembuatan aplikasi", "Menjahit pakaian"],
+        answer: 2
       },
       {
-        t: "Apa manfaat belajar PPLG bagi siswa?",
-        o: ["Mahir menari", "Mampu membuat aplikasi dan solusi digital", "Bisa menyanyi", "Ahli memasak"],
-        a: 1
+        question: "9. Tools desain UI/UX?",
+        options: ["Figma", "Photoshop", "Microsoft Word", "CorelDraw"],
+        answer: 0
       },
       {
-        t: "Contoh hasil dari pembelajaran PPLG adalah...",
-        o: ["Lukisan dinding", "Website toko online", "Laporan keuangan manual", "Puisi dan pantun"],
-        a: 1
+        question: "10. Istilah debugging artinya?",
+        options: ["Menambahkan bug", "Memperbaiki kesalahan kode", "Menjalankan program", "Menulis laporan"],
+        answer: 1
       },
       {
-        t: "Yang bukan termasuk tahapan pengembangan perangkat lunak adalah...",
-        o: ["Perencanaan", "Pengumpulan data", "Penghapusan sistem", "Implementasi"],
-        a: 2
+        question: "11. Fungsi git dalam proyek?",
+        options: ["Menggambar", "Mengelola versi kode", "Menyimpan data", "Menjalankan server"],
+        answer: 1
       },
       {
-        t: "Elemen penting dalam PPLG yang berkaitan dengan tampilan adalah...",
-        o: ["Database", "Algoritma", "UI/UX", "Sistem Operasi"],
-        a: 2
+        question: "12. Contoh output program?",
+        options: ["Console.log('Halo')", "Input data", "Struktur if else", "'Halo' muncul di layar"],
+        answer: 3
       },
       {
-        t: "Manakah yang benar tentang pemrograman?",
-        o: ["Hanya di komputer super", "Untuk buat sistem operasi saja", "Menyusun instruksi menyelesaikan masalah otomatis", "Mengganti hardware"],
-        a: 2
+        question: "13. Proses testing dilakukan saat?",
+        options: ["Sebelum coding", "Setelah desain", "Setelah selesai program", "Saat wawancara"],
+        answer: 2
       },
       {
-        t: "Apa itu debugging?",
-        o: ["Membuat game", "Koneksi internet", "Perbaikan kesalahan kode", "Membuat ikon"],
-        a: 2
+        question: "14. Salah satu bahasa markup adalah?",
+        options: ["HTML", "C++", "Python", "Java"],
+        answer: 0
       },
       {
-        t: "Dalam PPLG, produk yang dihasilkan bisa berupa...",
-        o: ["Jaringan komputer", "Aplikasi mobile dan game", "Perangkat keras", "Kabel data"],
-        a: 1
+        question: "15. Manfaat teamwork dalam PPLG?",
+        options: ["Cepat selesai dan efisien", "Banyak konflik", "Tidak penting", "Lebih lama"],
+        answer: 0
       }
     ];
 
-    const form = document.getElementById('quizForm');
-    soal.forEach((q, i) => {
-      const div = document.createElement('div');
+    const quizForm = document.getElementById("quizForm");
+
+    questions.forEach((q, index) => {
+      const div = document.createElement("div");
       div.className = "question";
-      div.innerHTML = `<p>${i + 1}. ${q.t}</p>` + 
-        q.o.map((opt, j) =>
-          `<label><input type="radio" name="q${i}" value="${j}"> ${opt}</label>`
-        ).join("");
-      form.appendChild(div);
+      div.innerHTML = `<h2>${q.question}</h2><div class="options">` +
+        q.options.map((opt, i) => `
+          <label>
+            <input type="radio" name="q${index}" value="${i}"/> ${opt}
+          </label>`).join("") +
+        `</div>`;
+      quizForm.appendChild(div);
     });
 
-    document.getElementById('submit').addEventListener('click', () => {
-      let total = soal.length;
-      let benar = 0;
-      for (let i = 0; i < soal.length; i++) {
-        const jawab = document.querySelector(`input[name="q${i}"]:checked`);
-        if (!jawab) {
-          alert("Silakan isi semua soal terlebih dahulu.");
-          return;
-        }
-        if (parseInt(jawab.value) === soal[i].a) {
-          benar++;
-        }
+    function submitQuiz() {
+      const answers = questions.map((_, i) =>
+        document.querySelector(`input[name="q${i}"]:checked`)
+      );
+
+      if (answers.includes(null)) {
+        alert("Silakan jawab semua soal terlebih dahulu!");
+        return;
       }
-      const skor = Math.round((benar / total) * 100);
-      document.getElementById('result').innerHTML = `Skor Anda: ${skor} (${benar} dari ${total} benar)`;
-      document.getElementById('submit').style.display = 'none';
-      document.getElementById('retry').style.display = 'block';
-    });
+
+      let score = 0;
+      answers.forEach((ans, i) => {
+        if (parseInt(ans.value) === questions[i].answer) {
+          score++;
+        }
+      });
+
+      const resultBox = document.getElementById("resultBox");
+      resultBox.style.display = "block";
+      resultBox.innerHTML = `<strong>Skor Kamu: ${score} / ${questions.length}</strong><br>Semangat belajar ya!`;
+
+      document.querySelector("button[onclick='submitQuiz()']").style.display = "none";
+      document.getElementById("retryBtn").style.display = "inline-block";
+    }
   </script>
 </body>
 </html>
