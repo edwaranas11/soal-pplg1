@@ -132,7 +132,24 @@
         return;
       }
 
-      hasil.innerHTML = `Skor kamu: ${skor} dari ${soalData.length}`;
+      let hasilHTML = `<p>Skor kamu: <strong>${skor}</strong> dari ${soalData.length}</p>`;
+      hasilHTML += "<h4>Kunci Jawaban:</h4><ol>";
+      
+      soalData.forEach((item, i) => {
+        const jawabanSiswa = document.querySelector(`input[name="soal${i}"]:checked`).value;
+        const benar = item.benar;
+        const benarText = jawabanSiswa === benar ? "<span style='color:green;'>✔️</span>" : "<span style='color:red;'>❌</span>";
+        hasilHTML += `
+          <li>
+            <strong>${item.soal}</strong><br>
+            Jawaban kamu: <em>${jawabanSiswa}</em> ${benarText}<br>
+            Jawaban benar: <strong>${benar}</strong><br><br>
+          </li>
+        `;
+      });
+      hasilHTML += "</ol>";
+      hasil.innerHTML = hasilHTML;
+
       ulang.innerHTML = `<button onclick="location.reload()">Coba Lagi</button>`;
     });
   </script>
