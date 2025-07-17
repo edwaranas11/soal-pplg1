@@ -1,86 +1,59 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kuis PPLG - 15 Soal</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kuis PPLG - SMKS Al Mamun Cibugel</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f0f0f0;
-    }
-
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    header img {
-      height: 60px;
-      width: 60px;
-      border-radius: 10px;
-    }
-
-    header .info {
-      flex: 1;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.2em;
-    }
-
-    header p {
-      margin: 0;
-      font-size: 0.95em;
+      padding: 20px;
+      background: #f2f2f2;
+      color: #333;
     }
 
     .container {
       max-width: 800px;
-      margin: 20px auto;
+      margin: auto;
       background: white;
       padding: 20px;
       border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
-    h2 {
+    .logo {
+      text-align: center;
+    }
+
+    .logo img {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+
+    h1, h2 {
       text-align: center;
       color: #2c3e50;
     }
 
-    .soal {
+    .question {
       margin-bottom: 20px;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
     }
 
-    .soal p {
-      font-weight: bold;
+    .question p {
+      margin: 0 0 10px;
     }
 
-    .soal label {
+    .question label {
       display: block;
-      margin-left: 15px;
       margin-bottom: 5px;
+      cursor: pointer;
     }
 
-    .benar {
-      background-color: #d4edda;
-    }
-
-    .salah {
-      background-color: #f8d7da;
-    }
-
-    button {
-      margin-top: 10px;
+    #submit, #retry {
       padding: 10px 20px;
+      font-size: 16px;
+      margin: 20px auto;
+      display: block;
       background-color: #3498db;
       color: white;
       border: none;
@@ -88,119 +61,144 @@
       cursor: pointer;
     }
 
-    #hasil {
-      margin-top: 20px;
-      font-size: 1.2em;
+    #submit:hover, #retry:hover {
+      background-color: #2980b9;
+    }
+
+    #result {
+      font-size: 18px;
+      text-align: center;
       font-weight: bold;
-    }
-
-    #cobaLagi {
-      display: none;
-      margin-top: 10px;
-      background-color: #2ecc71;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      header img {
-        margin-bottom: 10px;
-      }
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <img src="https://edwaranas.github.io/soal-pplg1/LOGO SMK.png" alt="Logo Sekolah" id="logoSekolah">
-    <div class="info">
-      <h1>SMKS Al-Mamun Cibugel</h1>
-      <p>Pembuat: Edwar Anas, S.Kom</p>
-    </div>
-  </header>
-
   <div class="container">
-    <h2>Kuis PPLG - 15 Soal Pilihan Ganda</h2>
-    <form id="kuisForm"></form>
-    <button onclick="cekJawaban()">Selesai</button>
-    <div id="hasil"></div>
-    <button id="cobaLagi" onclick="location.reload()">Coba Lagi</button>
+    <div class="logo">
+      <img src="LOGO SMK.png" alt="Logo SMK" />
+      <h2>SMKS Al Mamun Cibugel</h2>
+      <p>Oleh: <strong>Edwar Anas, S.Kom</strong></p>
+    </div>
+    <h1>Kuis Konsep Dasar PPLG</h1>
+
+    <form id="quizForm">
+      <!-- SOAL 1 - 15 -->
+    </form>
+
+    <button id="submit">Lihat Hasil</button>
+    <div id="result"></div>
+    <button id="retry" style="display:none;" onclick="location.reload()">Coba Lagi</button>
   </div>
 
   <script>
-    const soalJawaban = [
-      {soal: "1. Apa kepanjangan dari PPLG?", pilihan: ["Pemrograman dan Perangkat Lunak Gratis", "Pengembangan Perangkat Lunak dan Gim", "Pengelolaan Perangkat Lunak Global", "Pembuatan Program dan Logika Global"], benar: "Pengembangan Perangkat Lunak dan Gim"},
-      {soal: "2. Tujuan utama dari PPLG adalah...?", pilihan: ["Menciptakan hardware berkualitas", "Mengembangkan software dan game", "Membuat desain grafis 3D", "Menyusun laporan keuangan digital"], benar: "Mengembangkan software dan game"},
-      {soal: "3. Berikut ini yang merupakan elemen dalam PPLG adalah, kecuali:", pilihan: ["Pemrograman", "Jaringan", "Perangkat Lunak", "Biologi Komputasi"], benar: "Biologi Komputasi"},
-      {soal: "4. Dalam proses bisnis PPLG, tahap awal yang dilakukan adalah:", pilihan: ["Testing", "Deployment", "Analisis kebutuhan", "Maintenance"], benar: "Analisis kebutuhan"},
-      {soal: "5. Apa fungsi dari tahap testing dalam proses pengembangan perangkat lunak?", pilihan: ["Menambahkan fitur baru", "Menghapus dokumentasi", "Menemukan dan memperbaiki bug", "Membuat tampilan UI"], benar: "Menemukan dan memperbaiki bug"},
-      {soal: "6. Perangkat lunak yang digunakan untuk membuat game termasuk dalam produk...?", pilihan: ["Hardware", "Jaringan", "Software", "Data Center"], benar: "Software"},
-      {soal: "7. Berikut ini merupakan contoh bahasa pemrograman, kecuali:", pilihan: ["Python", "HTML", "CSS", "Photoshop"], benar: "Photoshop"},
-      {soal: "8. Tahapan deployment dalam proses PPLG berarti...?", pilihan: ["Pengujian akhir aplikasi", "Pembuatan database", "Peluncuran aplikasi ke pengguna", "Desain interface pengguna"], benar: "Peluncuran aplikasi ke pengguna"},
-      {soal: "9. Apa yang dimaksud dengan maintenance dalam PPLG?", pilihan: ["Menghapus aplikasi", "Merawat dan memperbarui aplikasi setelah rilis", "Membuat ulang aplikasi dari nol", "Mempromosikan aplikasi ke media sosial"], benar: "Merawat dan memperbarui aplikasi setelah rilis"},
-      {soal: "10. Siapa saja yang terlibat dalam tim pengembangan perangkat lunak?", pilihan: ["Guru dan murid", "Programmer, UI/UX designer, tester", "Dokter, perawat, apoteker", "Sopir, mekanik, teknisi"], benar: "Programmer, UI/UX designer, tester"},
-      {soal: "11. Yang bukan termasuk tahapan dalam proses pengembangan perangkat lunak adalah:", pilihan: ["Perencanaan", "Pengumpulan data", "Penghapusan sistem", "Implementasi"], benar: "Penghapusan sistem"},
-      {soal: "12. Elemen penting dari PPLG yang berkaitan dengan tampilan aplikasi adalah:", pilihan: ["Database", "Algoritma", "UI/UX", "Sistem Operasi"], benar: "UI/UX"},
-      {soal: "13. Manakah pernyataan yang benar tentang pemrograman?", pilihan: ["Hanya bisa dilakukan di komputer super", "Proses membuat sistem operasi saja", "Menyusun instruksi untuk menyelesaikan masalah secara otomatis", "Proses mengganti hardware"], benar: "Menyusun instruksi untuk menyelesaikan masalah secara otomatis"},
-      {soal: "14. Apa itu debugging dalam proses pemrograman?", pilihan: ["Membuat tampilan game", "Menghubungkan ke internet", "Mencari dan memperbaiki kesalahan kode", "Membuat ikon aplikasi"], benar: "Mencari dan memperbaiki kesalahan kode"},
-      {soal: "15. Dalam PPLG, produk yang dihasilkan bisa berupa:", pilihan: ["Jaringan komputer", "Aplikasi mobile dan game", "Perangkat keras", "Kabel data"], benar: "Aplikasi mobile dan game"}
+    const soal = [
+      {
+        t: "Apa kepanjangan dari PPLG?",
+        o: ["Pengembangan Perangkat Lunak dan Gim", "Pengolahan Proyek Layanan Global", "Pemrograman Proses Layanan Game", "Pengetahuan Praktis Layanan Guru"],
+        a: 0
+      },
+      {
+        t: "Berikut ini yang termasuk dalam tujuan PPLG adalah...",
+        o: ["Mempelajari seni tari daerah", "Membuat kerajinan tangan", "Membuat, mengembangkan, dan menguji aplikasi", "Menanam sayuran hidroponik"],
+        a: 2
+      },
+      {
+        t: "Bahasa pemrograman yang umum dipelajari dalam PPLG adalah...",
+        o: ["Python, Java, HTML", "Bahasa Indonesia, Inggris, Jepang", "Aksara Jawa, Latin, Arab", "Photoshop, CorelDraw, Canva"],
+        a: 0
+      },
+      {
+        t: "Apa yang dimaksud dengan debugging?",
+        o: ["Menjalankan aplikasi", "Mencari dan memperbaiki kesalahan dalam kode", "Menambahkan gambar ke aplikasi", "Menghapus aplikasi"],
+        a: 1
+      },
+      {
+        t: "Elemen utama dalam pengembangan perangkat lunak adalah...",
+        o: ["Hardware, Proyektor, Whiteboard", "Analisis, Desain, Kode, Uji", "Papan tulis, Laptop, Speaker", "Kabel, Mouse, Printer"],
+        a: 1
+      },
+      {
+        t: "Proses bisnis dalam PPLG bertujuan untuk...",
+        o: ["Membeli dan menjual saham", "Mengembangkan solusi perangkat lunak yang efisien", "Membuat peraturan sekolah", "Membentuk organisasi siswa"],
+        a: 1
+      },
+      {
+        t: "UI adalah singkatan dari...",
+        o: ["Unique Interface", "User Interface", "Universal Internet", "Ultimate Input"],
+        a: 1
+      },
+      {
+        t: "Perangkat lunak adalah...",
+        o: ["Perangkat keras komputer", "Instruksi atau program yang dijalankan komputer", "Komponen fisik komputer", "Jaringan internet"],
+        a: 1
+      },
+      {
+        t: "Apa manfaat belajar PPLG bagi siswa?",
+        o: ["Mahir menari", "Mampu membuat aplikasi dan solusi digital", "Bisa menyanyi", "Ahli memasak"],
+        a: 1
+      },
+      {
+        t: "Contoh hasil dari pembelajaran PPLG adalah...",
+        o: ["Lukisan dinding", "Website toko online", "Laporan keuangan manual", "Puisi dan pantun"],
+        a: 1
+      },
+      {
+        t: "Yang bukan termasuk tahapan pengembangan perangkat lunak adalah...",
+        o: ["Perencanaan", "Pengumpulan data", "Penghapusan sistem", "Implementasi"],
+        a: 2
+      },
+      {
+        t: "Elemen penting dalam PPLG yang berkaitan dengan tampilan adalah...",
+        o: ["Database", "Algoritma", "UI/UX", "Sistem Operasi"],
+        a: 2
+      },
+      {
+        t: "Manakah yang benar tentang pemrograman?",
+        o: ["Hanya di komputer super", "Untuk buat sistem operasi saja", "Menyusun instruksi menyelesaikan masalah otomatis", "Mengganti hardware"],
+        a: 2
+      },
+      {
+        t: "Apa itu debugging?",
+        o: ["Membuat game", "Koneksi internet", "Perbaikan kesalahan kode", "Membuat ikon"],
+        a: 2
+      },
+      {
+        t: "Dalam PPLG, produk yang dihasilkan bisa berupa...",
+        o: ["Jaringan komputer", "Aplikasi mobile dan game", "Perangkat keras", "Kabel data"],
+        a: 1
+      }
     ];
 
-        const form = document.getElementById("kuisForm");
-
-    // Generate soal
-    soalJawaban.forEach((item, index) => {
-      const div = document.createElement("div");
-      div.classList.add("soal");
-      div.id = `soal-${index}`;
-
-      const p = document.createElement("p");
-      p.textContent = item.soal;
-      div.appendChild(p);
-
-      item.pilihan.forEach(pilihan => {
-        const label = document.createElement("label");
-        label.innerHTML = `<input type="radio" name="soal${index}" value="${pilihan}"> ${pilihan}`;
-        div.appendChild(label);
-      });
-
+    const form = document.getElementById('quizForm');
+    soal.forEach((q, i) => {
+      const div = document.createElement('div');
+      div.className = "question";
+      div.innerHTML = `<p>${i + 1}. ${q.t}</p>` + 
+        q.o.map((opt, j) =>
+          `<label><input type="radio" name="q${i}" value="${j}"> ${opt}</label>`
+        ).join("");
       form.appendChild(div);
     });
 
-    function cekJawaban() {
-      let skor = 0;
-
-      soalJawaban.forEach((item, index) => {
-        const jawaban = document.querySelector(`input[name="soal${index}"]:checked`);
-        const divSoal = document.getElementById(`soal-${index}`);
-        const semuaRadio = divSoal.querySelectorAll('input[type="radio"]');
-
-        semuaRadio.forEach(radio => {
-          if (radio.value === item.benar) {
-            radio.parentElement.classList.add("benar");
-          }
-
-          if (jawaban && radio.checked && radio.value !== item.benar) {
-            radio.parentElement.classList.add("salah");
-          }
-
-          radio.disabled = true;
-        });
-
-        if (jawaban && jawaban.value === item.benar) {
-          skor++;
+    document.getElementById('submit').addEventListener('click', () => {
+      let total = soal.length;
+      let benar = 0;
+      for (let i = 0; i < soal.length; i++) {
+        const jawab = document.querySelector(`input[name="q${i}"]:checked`);
+        if (!jawab) {
+          alert("Silakan isi semua soal terlebih dahulu.");
+          return;
         }
-      });
-
-      document.getElementById("hasil").textContent = `Skor Anda: ${skor} dari ${soalJawaban.length} soal`;
-      document.getElementById("cobaLagi").style.display = "inline-block";
-    }
-
-    // Ganti URL logo jika sudah punya logo SMKS Al-Mamun Cibugel
-    document.getElementById('logoSekolah').src = 'https://edwaranas.github.io/soal-pplg1/LOGO SMK.png'; // Ganti link ini
+        if (parseInt(jawab.value) === soal[i].a) {
+          benar++;
+        }
+      }
+      const skor = Math.round((benar / total) * 100);
+      document.getElementById('result').innerHTML = `Skor Anda: ${skor} (${benar} dari ${total} benar)`;
+      document.getElementById('submit').style.display = 'none';
+      document.getElementById('retry').style.display = 'block';
+    });
   </script>
 </body>
 </html>
